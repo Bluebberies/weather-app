@@ -1,13 +1,651 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  /* border: 2px solid red; */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  background: #100E1D;
+  color: #E7E7EB;
+  font-family: 'Raleway', sans-serif;
+}
+
+.App {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.App .sideBar {
+  padding: 0;
+}
+
+
+.App .current-place, .App .searchBar {
+  margin: 0;
+  /* min-height: 100vh; */
+  height: 100%;
+  position: relative;
+}
+
+.App .searchBar {
+  min-height: 100vh;
+  background-color: #1E213A;
+  padding: 1rem 14px;
+}
+
+.App .searchBar.lightMode{
+  background: #252534;
+}
+
+.App .searchBar .cancel {
+  margin-bottom: 2em;
+}
+
+.App .searchBar .cancel i {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.App .searchBar .searchInput {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 340px;
+  height: 48px;
+  padding-left: 1rem;
+  /* margin-top: 2rem; */
+  border: 1px solid #E7E7EB
+}
+
+.App .searchBar .searchInput .searchIcon i {
+  color: #616475;
+}
+
+.App .searchBar .searchInput input {
+  height: 40px;
+  border: none;
+  background: transparent;
+  color: #E7E7EB;
+}
+
+.App .searchBar .searchInput input:focus {
+  border: none;
+  outline: none;
+}
+
+.App .searchBar .searchInput input::placeholder {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.App .searchBar .searchBtn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.App .searchBar .searchBtn p {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  width: 100px;
+  height: 48px;
+  background: #3C47E9;
+}
+
+.App .searchBar .places {
+  height: 35rem;
+  overflow: auto;
+}
+
+.App .searchBar .placeOptions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 30rem;
+  height: 64px;
+  padding: 0 2rem;
+  margin-bottom: .5rem;
+  cursor: pointer;
+}
+
+
+.App .searchBar .placeOptions p {
+  margin-top: 1rem;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.App .searchBar .placeOptions .arrow {
+  color: #6E707A;
+  visibility: hidden;
+}
+
+.App .searchBar .placeOptions:hover {
+  border: 1px solid #616475;
+}
+
+.App .searchBar .placeOptions:hover .arrow {
+  visibility: visible;
+}
+
+.App .current-place::after {
+  background-color: #1E213A;
+  content: "";
+  background: url('./Cloud-background.png') no-repeat #2634ae;
+  background-size: contain;
+  opacity: 0.2;
+  background-position: 1px 8rem;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.App .current-place.lightMode::after {
+  background: url('./Cloud-background.png') no-repeat #da106e;
+  background-size: contain;
+  background-position: 1px 8rem;
+}
+
+
+.App .current-place .navigate-location {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* gap: 14rem; */
+  padding: 18px 2rem 13px 2.4rem;
+}
+
+.App .current-place .navigate-location p {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 13px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 19px;
+  color: #E7E7EB;
+  width: 131px;
+  height: 30px;
+  background: #6E707A;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.icon {
+  width: 13rem;
+}
+
+.App .current-place .navigate-location .location-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.App .current-place .image img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 0px 40px 35px 0px; */
+  width: 292px;
+  height: 272px;
+}
+
+.App .current-place .degree {
+  margin-top: 2rem;
+  height: 6rem;
+}
+
+.App .current-place .degree h1 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 74px;
+  /* line-height: 169px; */
+}
+
+.App .current-place .degree h1 sub {
+  color: #A09FB1;
+  font-weight: lighter;
+  font-size: 30px;
+}
+
+.App .current-place p.description {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 42px;
+  text-align: center;
+  color: #A09FB1;
+  margin-top: 1rem;
+}
+
+.App .current-place .day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rem;
+}
+
+.App .current-place .day h3 {
+  display: flex;
+  align-items: center;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 21px;
+  color: #88869D;
+  /* margin-top: 2rem; */
+
+}
+
+.App .current-place .day h3 span.weekday {
+  margin-right: 8px;
+}
+
+.App .current-place .day h3 span.dot {
+  margin-top: -7px;
+  font-weight: bolder;
+}
+
+.App .current-place .day h3 span.weekdate {
+  margin-left: 8px;
+}
+
+.App .current-place .day .place {
+  height: 2rem;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  color: #88869D;
+}
+
+.App .current-place .day .place p {
+  margin-top: 19px;
+}
+
+.App .dailyForecasts {
+  padding: 2rem 0 2rem .5rem;
+  transition: 1s;
+}
+
+.App .dailyForecasts.lightMode {
+  background-color: #E7E7EB;
+}
+
+.App .dailyForecasts .footer{
+  color:#E7E7EB;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.App .dailyForecasts .footer.lightMode{
+  color: #010103;
+}
+
+.App .changeMetrics {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  /* gap: 9px; */
+  margin-bottom: .5rem;
+  padding-right: 2rem;
+}
+
+.App .changeMetrics .modeToggle {
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: .5rem;
+  gap: 3px;
+  height: 1rem;
+  margin-right: 2rem;
+  cursor: pointer;
+}
+
+.App .changeMetrics .modeToggle .moon-icon i {
+  font-size: 1rem;
+}
+
+.App .changeMetrics .modeToggle .moon-icon i.lightMode {
+  color: black;
+}
+
+.App .changeMetrics .modeToggle h3 {
+  font-size: 1rem;
+  font-weight: 900;
+  margin-top: 5px;
+  transition: 1s;
+}
+
+.App .changeMetrics .modeToggle h3.lightMode{
+  color: #010103;
+}
+
+.App .changeMetrics .modeToggle:active h3 {
+  font-size: 1.5rem;
+}
+
+.App .changeMetrics .tempToggle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 9px;
+  /* margin-bottom: .5rem;
+  padding-right: 2rem; */
+}
+
+.App .changeMetrics .tempToggle p {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 21px;
+  width: 30px;
+  height: 30px;
+  background: #585676;
+  border-radius: 50px;
+  color: #E7E7EB;
+  transition: .5s;
+}
+
+.App .changeMetrics .tempToggle p.active {
+  color: #110E3C;
+  background: #E7E7EB;
+}
+
+.App .changeMetrics .tempToggle p.active.lightMode{
+  background-color: #110E3C;
+  color: #E7E7EB;
+}
+
+.App .changeMetrics .tempToggle p.lightMode{
+  background-color: #9cacb5;
+  color: #E7E7EB;
+}
+
+.App .dayCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  width: 150px;
+  height: 177px;
+  background: #1E213A;
+  margin-top: 2rem;
+  transition: .5s;
+}
+
+.App .dayCard.lightMode{
+  background: #9a9aa0;
+  box-shadow: 1px 1px 3px 1px black;
+}
+
+.App .dayCard p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+  color: #E7E7EB;
+}
+
+.App .dayCard p.lightMode{
+  color: #010103;
+  font-weight: 900;
+}
+
+.App .dayCard img {
+  margin-top: -1rem;
+  width: 6rem;
+  height: 5rem;
+}
+
+.App .dayCard .tempLevels {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.App .dayCard .tempLevels span {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.App .dayCard .tempLevels span.lightMode{
+  color: #010103;
+  font-weight: 900;
+}
+
+.App .dayCard .tempLevels span.lowerTemp {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #A09FB1;
+}
+
+.App .dayCard .tempLevels span.lowerTemp.lightMode{
+  color: #4d4d63;
+}
+
+.App .highlights {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  margin-top: 3rem;
+}
+
+
+.App .highlightCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background: #1E213A;
+  /* width: 328px; */
+  margin-bottom: 2rem;
+  height: 184px;
+  transition: .5s;
+}
+
+.App .highlightCard.lightMode{
+  background: #9a9aa0;
+  box-shadow: 1px 1px 3px 1px black;
+}
+
+.App .highlightCard p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.App .highlightCard p.lightMode{
+  color: #010103;
+  font-weight: 900;
+}
+
+.App .highlightCard h3 {
+  margin-top: -10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+}
+
+.App .highlightCard h3.lightMode{
+  color: #010103;
+}
+
+.App .highlightCard h3 span {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 3rem;
+}
+
+.App .highlightCard h3 span.unit {
+  font-weight: 300;
+  font-size: 2rem;
+  margin-top: 11px;
+}
+
+.App .highlightCard .windDirection {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-top: 3px;
+}
+
+.App .highlightCard .windDirection.lightMode{
+  color: #010103;
+}
+
+.App .highlightCard .windDirection div i {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 2rem;
+  transform: rotate(-150deg)
+}
+
+.App .highlightCard .windDirection div i.lightMode{
+  color: #010103;
+}
+
+.App .highlightCard .windDirection span {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.App .highlightCardLower {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background: #1E213A;
+  /* width: 328px; */
+  margin-bottom: 2rem;
+  height: 184px;
+  transition: .5s;
+}
+
+.App .highlightCardLower.lightMode{
+  background: #9a9aa0;
+  box-shadow: 1px 1px 3px 1px black;
+}
+
+.App .highlightCardLower p.lightMode{
+  color: #010103;
+  font-weight: 900;
+}
+
+.App .highlightCardLower p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.App .highlightCardLower h3 {
+  margin-top: -10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+}
+
+.App .highlightCardLower h3.lightMode{
+  color: #010103;
+}
+
+.App .highlightCardLower h3 span {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 3rem;
+}
+
+.App .highlightCardLower h3 span.unit {
+  font-weight: 300;
+  font-size: 2rem;
+  margin: 11px 0 0 9px;
+}
+
+.App .highlightCard .humidityPercentage {
+  display: flex;
+  flex-direction: column;
+  /* width: 2rem; */
+}
+
+.App .highlightCard .humidityPercentage .levels {
+  display: flex;
+  gap: 5rem;
+  font-style: normal;
+}
+
+.App .highlightCard .humidityPercentage .levels.lightMode{
+  color: #010103;
+}
+
+.App .highlightCard .humidityPercentage .levels span {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  color: #A09FB1;
+}
+
+.App .highlightCard .humidityPercentage .levels span.lightMode{
+  color: #010103;
+}
+
+.App .highlightCard .humidityPercentage .percentUnit {
+  display: flex;
+  justify-content: flex-end;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  color: #A09FB1;
+}
+
+.App .highlightCard .humidityPercentage .progress {
+  height: 5px;
+}
+
+.App .highlightCard .humidityPercentage .progress.lightMode{
+  background-color: blue;
 }
