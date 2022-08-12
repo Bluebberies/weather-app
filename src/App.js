@@ -79,8 +79,23 @@ function App () {
         getLocationName(position.coords.latitude, position.coords.longitude)
         getWeatherData(position.coords.latitude, position.coords.longitude)
       }
-      function error () {
+      function error (error) {
         toast.warn('Please enable location')
+        switch(error.code) {
+          case error.PERMISSION_DENIED:
+            toast.warn("Please allow the request to get location.")
+            break;
+          case error.POSITION_UNAVAILABLE:
+            toast.warn("Location information is unavailable.")
+            break;
+          case error.TIMEOUT:
+            toast.warn("The request to get location timed out.")
+            break;
+          default:
+            toast.warn("An unknown error occurred. Please ensure that locations permission is enabled for this browser")
+            break;
+        }
+        console.log(error)
       }
     } else {
       toast.warn('Geolocation is not supported by this browser.')
