@@ -44,7 +44,7 @@
 
 <!-- List the features of your application or follow the template. Don't share the figma file here :) -->
 
-A weather app which could be used to get the curent weather of a particular location. Toggles between dark and light mode, can modify the weather temperature unit between Celsius and Fahrenheit, can get the weather of your location.
+A weather app which could be used to get the curent weather of a particular location. Toggles between dark and light mode, can modify the weather temperature unit between Celsius and Fahrenheit, can get the weather of your location. Made it accessible for both android an ios users
 
 ## How To Use
 

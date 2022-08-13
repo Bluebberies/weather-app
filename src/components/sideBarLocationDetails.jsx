@@ -10,6 +10,7 @@ const SideBarLocationDetails = ({
   getDate,
   locationName,
   lightMode,
+  ios,
 }) => {
   const setLight = () => {
     if (lightMode) {
@@ -24,12 +25,17 @@ const SideBarLocationDetails = ({
           <p onClick={toggleSearchBar}>Search for places</p>
         </Col>
         <Col className="icon d-flex justify-content-end">
-          <div className="location-icon">
-            <i
-              onClick={getLocation}
-              className="fa-solid fa-location-crosshairs "
-            ></i>
-          </div>
+          {!ios && (
+            <div className="tooltp">
+              <div className="location-icon">
+                <i
+                  onClick={getLocation}
+                  className="fa-solid fa-location-crosshairs "
+                ></i>
+              </div>
+              <span class="tooltiptext">Get your location</span>
+            </div>
+          )}
         </Col>
       </div>
       <div className="image mt-5 d-flex align-items-center justify-content-center">

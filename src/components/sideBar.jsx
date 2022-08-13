@@ -19,6 +19,7 @@ const SideBar = ({
   handleSearch,
   setPlace,
   lightMode,
+  ios
 }) => {
   return (
     <Col xl={4} className="sideBar">
@@ -32,6 +33,7 @@ const SideBar = ({
           getDate={getDate}
           locationName={locationName}
           lightMode={lightMode}
+          ios={ios}
         />
       )}
       {showSearch && (
